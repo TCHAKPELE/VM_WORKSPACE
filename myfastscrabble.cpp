@@ -1,18 +1,20 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-
+#include <string>
+#include <cstring>
 
 using namespace std;
 
-int main()
+int main(int argc , const char ** argv)
 {
     FILE *f = NULL;
     char value='x';
     int x = 1;
     int nbrchar =0;
     char test [100]={0};
-    char dic [1000000]={0};
+    char dic [1000]={0};
+    char dic2[1000]={0};
     int i =0;
     int j,increment;
     int a =0;
@@ -20,7 +22,18 @@ int main()
     char test2[100]={0};
     int tst = 0;
     int code=0;
-    f=fopen("words.txt","r");
+    int p=0;
+string dico = argv[2];
+int k =dico.length()+1;
+char d[k]={0};
+for(p=0;p<k-1;p++){
+d[p]=dico.at(p);
+
+
+}
+
+
+    f=fopen(d,"r");
 if(f==NULL){
 
 cout << "Impossible d'ouvrir le fichier " << endl;
@@ -32,7 +45,7 @@ return code;
 }
 else
 {
-    cout << "Entrez la chaine de caractere  " ;
+   
 
 cin >> test;
 
@@ -62,6 +75,7 @@ cout << " les anagrammes sont : " << endl;
         value = fgetc(f);
 
           dic[a]=value;
+          dic2[a]=value;
           if(value == '\n'){
 
 
@@ -75,13 +89,13 @@ cout << " les anagrammes sont : " << endl;
 
                    for(increment = 0 ;increment <i;increment++){
 
-                     for(j = a-nbrchar ;j <=a;j++){
+                     for(j = a-nbrchar ;j <a;j++){
 
-                    if(test2[increment]==dic[j]){
+                    if(test2[increment]==dic2[j]){
 
                         occurrence++;
 			test2[increment]='#';
-
+                         dic2[j]='@';
 
                     }
 
@@ -113,7 +127,9 @@ cout << " les anagrammes sont : " << endl;
          
           occurrence = 0;
            x++;
-           nbrchar = 0;
+           
+nbrchar = 0;
+a=0;
           }
           else{
 
